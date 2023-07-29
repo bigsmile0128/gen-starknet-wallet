@@ -31,7 +31,7 @@ const randomDelay = () => {
 
 export const sleep = (seconds) => {
     if (typeof seconds === 'number' && !isNaN(seconds)) {
-        const milliseconds = seconds * 1000; // Преобразуем секунды в миллисекунды
+        const milliseconds = seconds * 1000;
         return new Promise((resolve) => setTimeout(resolve, milliseconds));
     } else {
         const randomMilliseconds = randomDelay();
