@@ -1,8 +1,8 @@
 // OkxWithdraw.js
 import { OKXAuth, OKXWithdrawOptions } from '../config.js';
-import ccxt from "ccxt";
 import { checkBalance, sleep } from "./helpers.js";
 import { abi, ethcontract, rpc } from "./constants.js";
+import ccxt from "ccxt";
 
 class ErrorHandler {
     static handleCcxtError(e) {
@@ -27,7 +27,7 @@ class ExchangeFactory {
             exchange.https_proxy = OKXAuth.okx_proxy
         }
 
-        return exchange
+        return exchange;
     }
 }
 
@@ -103,7 +103,7 @@ class OkxWithdraw {
                 network: this.withdrawOptions.network
             });
             console.log(`[OKX] Withdrew out ${this.amount} ${this.withdrawOptions.symbolWithdraw} to ${address}`);
-            console.log(`[OKX} Start waiting for deposit.`)
+            console.log(`[OKX] Start waiting for deposit.`)
             await BalanceUpdater.updateBalance(address);
 
         } catch (error) {
