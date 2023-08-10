@@ -343,6 +343,7 @@ const deployWalletsBatch = async (addresses, privateKeys, deployFunction, concur
     return results;
 };
 
+
 export const deployArgentWallets = async (addresses, privateKeys, publicKeys, concurrencyLimit) => {
     const deployFunction = async (address, privateKey) => {
         const publicKey = publicKeys[addresses.indexOf(address)];
@@ -357,12 +358,14 @@ export const deployArgentWallets = async (addresses, privateKeys, publicKeys, co
     return deployWalletsBatch(addresses, privateKeys, deployFunction, concurrencyLimit);
 };
 
+
 export const deployBraavosWallets = async (addresses, privateKeys, mnemonics, concurrencyLimit) => {
     const deployFunction = async (address, privateKey) => {
         const mnemonic = mnemonics[addresses.indexOf(address)];
         const appInitializer = new AppInitializer(OKXWithdrawOptions, symbolWithdraw, network, address);
         await sleep();
         await appInitializer.run();
+        await sleep();
         const deployWallet = new BraavosDeployWallet(privateKey, mnemonic);
         return await deployWallet.deployWallet();
     };
